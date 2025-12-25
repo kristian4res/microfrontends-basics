@@ -1,1 +1,1 @@
-console.log('MFE container')
+import("./bootstrap.js");
