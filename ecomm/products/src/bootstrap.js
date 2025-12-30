@@ -11,10 +11,10 @@ const mount = (element) => {
 };
 
 if (process.env.NODE_ENV === "development") {
-    const el = document.querySelector("#dev-products");
+    const element = document.querySelector("#dev-products");
 
-    if (el) {
-        mount(el);
+    if (element) {
+        mount(element);
     }
 }
 

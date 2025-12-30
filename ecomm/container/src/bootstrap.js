@@ -1,5 +1,6 @@
 import { mount as productsMount } from 'products/ProductsIndex';
-import 'cart/CartShow';
+import { mount as cartShowMount } from 'cart/CartShow';
 
 console.log("MFE container");
 productsMount(document.querySelector("#dev-products"));
+cartShowMount(document.querySelector("#dev-cart"));
