@@ -1,15 +1,15 @@
-name: deploy-container
+name: deploy-ecomm-2-container
 
 on:
     push: 
         branches:
             - main
         paths:
-            - 'packages/container/**'
+            - 'ecomm-2/packages/container/**'
 
 defaults:
     run:
-        working-directory: packages/container
+        working-directory: ecomm-2/packages/container
 
 jobs:
     build:
