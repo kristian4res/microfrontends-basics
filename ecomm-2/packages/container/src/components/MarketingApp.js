@@ -1,12 +1,25 @@
-import { mount as marketingMount } from 'marketing/MarketingApp';
-import React, { useRef, useEffect } from 'react';
+import { mount as marketingMount } from "marketing/MarketingApp";
+import React, { useRef, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 export default () => {
     const ref = useRef(null);
+    const history = useHistory();
 
     useEffect(() => {
-        marketingMount(ref.current);
-    });
+        const { onParentNavigate } = marketingMount(ref.current, {
+            onNavigate: ({ pathname: nextPathname }) => {
+                console.log("Triggered navigation callback in Marketing MFE");
+                const { pathname } = history.location;
 
-    return <div ref={ref} />
+                if (pathname !== nextPathname) {
+                    history.push(nextPathname);
+                }
+            },
+        });
+
+        history.listen(onParentNavigate);
+    }, []);
+
+    return <div ref={ref} />;
 };
