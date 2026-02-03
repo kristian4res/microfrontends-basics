@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createMemoryHistory } from "history";
+import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
 
-const mount = (element, { onNavigate }) => {
-    const history = createMemoryHistory();
+const mount = (element, { onNavigate, defaultHistory }) => {
+    // Use Browser history for local development
+    const history = defaultHistory || createMemoryHistory();
 
     // Update browser history when memory history changes
     history.listen(onNavigate);
@@ -28,7 +29,7 @@ if (process.env.NODE_ENV === "development") {
     const devElement = document.querySelector("#_marketing-dev-root");
 
     if (devElement) {
-        mount(devElement);
+        mount(devElement, { defaultHistory: createBrowserHistory });
     }
 }
 
