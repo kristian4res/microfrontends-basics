@@ -1,4 +1,4 @@
-import { mount as marketingMount } from "marketing/MarketingApp";
+import { mount as authMount } from "auth/AuthApp";
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -10,7 +10,7 @@ export default () => {
         const { onParentNavigate } = marketingMount(ref.current, {
             initialPath: history.location.pathname,
             onNavigate: ({ pathname: nextPathname }) => {
-                console.log("Triggered navigation callback in Marketing MFE");
+                console.log("Triggered navigation callback in Auth MFE");
                 const { pathname } = history.location;
 
                 if (pathname !== nextPathname) {

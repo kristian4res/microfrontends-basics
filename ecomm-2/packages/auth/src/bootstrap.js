@@ -3,9 +3,13 @@ import ReactDOM from "react-dom";
 import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
 
-const mount = (element, { onNavigate, defaultHistory }) => {
+const mount = (element, { onNavigate, defaultHistory, initialPath }) => {
     // Use Browser history for local development
-    const history = defaultHistory || createMemoryHistory();
+    const history =
+        defaultHistory ||
+        createMemoryHistory({
+            initialEntries: [initialPath],
+        });
 
     // Update browser history when memory history changes
     history.listen(onNavigate);
