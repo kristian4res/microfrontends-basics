@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
 
-const mount = (element, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (
+    element,
+    { onNavigate, onSignIn, defaultHistory, initialPath },
+) => {
     // Use Browser history for local development
     const history =
         defaultHistory ||
@@ -14,7 +17,13 @@ const mount = (element, { onNavigate, defaultHistory, initialPath }) => {
     // Update browser history when memory history changes
     history.listen(onNavigate);
 
-    ReactDOM.render(<App history={history} />, element);
+    ReactDOM.render(
+        <App
+            onSignIn={onSignIn}
+            history={history}
+        />,
+        element,
+    );
 
     return {
         onParentNavigate({ pathname: nextPathname }) {

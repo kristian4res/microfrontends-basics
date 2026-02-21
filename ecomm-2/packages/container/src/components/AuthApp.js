@@ -2,12 +2,12 @@ import { mount as authMount } from "auth/AuthApp";
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({ onSignIn }) => {
     const ref = useRef(null);
     const history = useHistory();
 
     useEffect(() => {
-        const { onParentNavigate } = marketingMount(ref.current, {
+        const { onParentNavigate } = authMount(ref.current, {
             initialPath: history.location.pathname,
             onNavigate: ({ pathname: nextPathname }) => {
                 console.log("Triggered navigation callback in Auth MFE");
@@ -17,6 +17,7 @@ export default () => {
                     history.push(nextPathname);
                 }
             },
+            onSignIn,
         });
 
         history.listen(onParentNavigate);
